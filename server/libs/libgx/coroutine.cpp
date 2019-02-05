@@ -161,7 +161,7 @@ inline void Coroutine::switch_context(coctx_t *octx, coctx_t *nctx) noexcept {
 	*octx = GetCurrentFiber();
 	SwitchToFiber(*nctx);
 #else
-	return swapcontext(octx, nctx) >= 0;
+	swapcontext(octx, nctx);
 #endif
 }
 

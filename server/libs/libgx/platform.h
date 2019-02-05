@@ -10,17 +10,17 @@
 #define GX_NS_USING             using namespace GX_NS;
 
 #if defined(WIN32) || defined(_WIN32)
-#define GX_PLATFORM_WIN32
-#define GX_REACTOR_USE_SELECT
-//#define _CRT_SECURE_NO_WARNINGS
-#define _WINSOCK_DEPRECATED_NO_WARNINGS
-#define NOMINMAX
-#include <Ws2tcpip.h>
-#include <winsock2.h>
-#include <windows.h>
+    #define GX_PLATFORM_WIN32
+    #define GX_REACTOR_USE_SELECT
+    //#define _CRT_SECURE_NO_WARNINGS
+    #define _WINSOCK_DEPRECATED_NO_WARNINGS
+    #define NOMINMAX
+    #include <Ws2tcpip.h>
+    #include <winsock2.h>
+    #include <windows.h>
 #else
-#define GX_PLATFORM_LINUX
-#define GX_REACTOR_USE_EPOLL
+    #define GX_PLATFORM_LINUX
+    #define GX_REACTOR_USE_EPOLL
 #endif
 
 #include <cstddef>
@@ -32,17 +32,17 @@
 #include <cstdio>
 
 #ifdef __GNUC__
-#define GX_PRINTF_ATTR(m, n)    __attribute__((format(printf, m, n)))
-#define gx_likely(x)            __builtin_expect(!!(x), 1)
-#define gx_unlikely(x)          __builtin_expect(!!(x), 0)
-#define GX_UNUSED               __attribute__((unused))
+    #define GX_PRINTF_ATTR(m, n)    __attribute__((format(printf, m, n)))
+    #define gx_likely(x)            __builtin_expect(!!(x), 1)
+    #define gx_unlikely(x)          __builtin_expect(!!(x), 0)
+    #define GX_UNUSED               __attribute__((unused))
 #else
-#define GX_PRINTF_ATTR(m, n)
-#define gx_likely(x)            (x)
-#define gx_unlikely(x)          (x)
-#define noexcept                throw()
-#define constexpr
-#define GX_UNUSED
+    #define GX_PRINTF_ATTR(m, n)
+    #define gx_likely(x)            (x)
+    #define gx_unlikely(x)          (x)
+    #define noexcept                throw()
+    #define constexpr
+    #define GX_UNUSED
 #endif
 
 #define gx_is_p2aligned(x, a)   ((((uintptr_t)(v)) & ((uintptr_t)(a) - 1)) == 0)

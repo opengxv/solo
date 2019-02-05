@@ -6,8 +6,8 @@
 typedef LPVOID coctx_t;
 #else
 #include <ucontext.h>
-struct ucontext;
-typedef ucontext coctx_t;
+//struct ucontext;
+typedef ucontext_t coctx_t;
 #endif
 
 #include "object.h"

@@ -13,6 +13,7 @@ GX_SOURCES =      	\
     pool.cpp            \
     allocator.cpp       \
     getopt.cpp          \
+    io.cpp              \
     fileloader.cpp      \
     csvloader.cpp       \
     charset.cpp         \
