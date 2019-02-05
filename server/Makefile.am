@@ -1,2 +1,2 @@
-SUBDIRS = libs tools
+SUBDIRS = libs
 

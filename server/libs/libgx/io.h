@@ -3,15 +3,21 @@
 
 #include "platform.h"
 
-GX_NS_BEGIN
-
 #ifdef GX_PLATFORM_WIN32
-#define GX_FD_INVALID_VALUE INVALID_SOCKET
-typedef SOCKET fd_t;
+    #define GX_FD_INVALID_VALUE INVALID_SOCKET
+    typedef SOCKET fd_t;
 #else
-#define GX_FD_INVALID_VALUE -1
-typedef int fd_t;
+    #include <unistd.h>
+    #include <fcntl.h>
+    #include <sys/types.h>
+    #include <sys/socket.h>
+    #include <netinet/in.h>
+
+    #define GX_FD_INVALID_VALUE -1
+    typedef int fd_t;
 #endif
+
+GX_NS_BEGIN
 
 inline bool fd_valid(fd_t fd) noexcept {
 	return fd != GX_FD_INVALID_VALUE;
@@ -77,13 +83,12 @@ inline void fd_block(fd_t fd, bool value) noexcept {
 inline void fd_nodelay(fd_t fd, bool value) noexcept{
 #ifdef GX_PLATFORM_WIN32
 	int nodelay = value ? 1 : 0;
-	setsockopt(fd, IPPROTO_TCP, TCP_NODELAY, (const char*)&nodelay, sizeof(nodelay));
+	setsockopt(fd, IPPROTO_TCP, O_NDELAY, (const char*)&nodelay, sizeof(nodelay));
 #else
 	int nodelay = value ? 1 : 0;
-	setsockopt(fd, IPPROTO_TCP, TCP_NODELAY, &nodelay, sizeof(nodelay));
+	setsockopt(fd, IPPROTO_TCP, O_NDELAY, &nodelay, sizeof(nodelay));
 #endif
 }
-
 
 class IO {
 public:

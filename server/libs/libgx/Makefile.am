@@ -1,6 +1,6 @@
-lib_LTLIBRARIES = libgxs.la
+lib_LTLIBRARIES = libgx.la
 
-GX_SOURCES =      	    \
+GX_SOURCES =      	\
     object.cpp          \
     singleton.cpp       \
     bitorder.cpp        \
@@ -36,6 +36,7 @@ GX_SOURCES =      	    \
     prob.cpp            \
     cron.cpp
 
-libgxs_la_SOURCES = $(GX_SOURCES)
-libgxs_la_CXXFLAGS = -std=c++11 -O2 -Wall -D__GX_SERVER__ -Wl,-E -I/usr/include/lua5.1
-libgxs_la_LDFLAGS = -llua5.1 -lmysqlclient
+libgx_la_SOURCES = $(GX_SOURCES)
+libgx_la_CXXFLAGS = -std=c++11 -O2 -Wall -Wl,-E -I/usr/include/lua5.1
+libgx_la_LDFLAGS = -llua5.1 -lmysqlclient
+
