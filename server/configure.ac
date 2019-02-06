@@ -14,12 +14,14 @@ AC_PROG_LIBTOOL
 #export LDFLAGS="$LDFLAGS -L`pwd`/deps/libgx -llua5.1 -lrt -lm -ldl -lz -lmysqlclient"
 
 AC_CONFIG_SUBDIRS([
-	libs/libgx
+    libs/libgx
+    tools/runproxy
 ])
 
 AC_CONFIG_FILES([
-	Makefile 
+    Makefile 
     libs/Makefile
+    tools/Makefile
 ])
 
 
